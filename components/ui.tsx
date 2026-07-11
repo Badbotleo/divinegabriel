@@ -1,4 +1,4 @@
-import { ACCENT, VentureColor } from "@/lib/data";
+import { ACCENT, AccentColor, accentText } from "@/lib/data";
 
 export function Section({
   id,
@@ -57,11 +57,11 @@ export function VentureBadge({
   size = 56,
 }: {
   initial: string;
-  color: VentureColor;
+  color: AccentColor;
   size?: number;
 }) {
   const bg = ACCENT[color];
-  const textColor = color === "gold" ? "#0A0A0A" : "#FFFFFF";
+  const textColor = accentText(color);
   return (
     <span
       className="inline-flex flex-none items-center justify-center rounded-full font-extrabold"

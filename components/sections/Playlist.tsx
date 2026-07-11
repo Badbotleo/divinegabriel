@@ -1,9 +1,13 @@
 import FadeIn from "@/components/FadeIn";
 import { Section, SectionHeading } from "@/components/ui";
 import { MusicNoteIcon } from "@/components/icons";
-import { ACCENT, playlist } from "@/lib/data";
+import { ACCENT, SiteContent } from "@/lib/data";
 
-export default function Playlist() {
+export default function Playlist({
+  playlist,
+}: {
+  playlist: SiteContent["playlist"];
+}) {
   return (
     <Section id="playlist" panel>
       <FadeIn>
@@ -14,7 +18,7 @@ export default function Playlist() {
       </FadeIn>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {playlist.map((song, i) => (
+        {playlist.songs.map((song, i) => (
           <FadeIn key={`${song.artist}-${song.title}`} delay={i * 50}>
             <div className="flex items-center gap-4 rounded-2xl border border-line bg-white p-5 transition-colors hover:border-muted/40">
               <span
@@ -36,12 +40,22 @@ export default function Playlist() {
         ))}
       </div>
 
-      <div className="mt-8">
+      <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold">
         <a
-          href="#"
-          className="text-sm font-semibold text-ink transition-opacity hover:opacity-70"
+          href={playlist.spotifyUrl || "#"}
+          target={playlist.spotifyUrl && playlist.spotifyUrl !== "#" ? "_blank" : undefined}
+          rel="noopener noreferrer"
+          className="text-ink transition-opacity hover:opacity-70"
         >
           Full playlist on Spotify →
+        </a>
+        <a
+          href={playlist.appleUrl || "#"}
+          target={playlist.appleUrl && playlist.appleUrl !== "#" ? "_blank" : undefined}
+          rel="noopener noreferrer"
+          className="text-ink transition-opacity hover:opacity-70"
+        >
+          Listen on Apple Music →
         </a>
       </div>
     </Section>

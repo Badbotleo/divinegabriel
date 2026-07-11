@@ -1,8 +1,8 @@
 import FadeIn from "@/components/FadeIn";
 import { Section, SectionHeading } from "@/components/ui";
-import { nowCards } from "@/lib/data";
+import { SiteContent } from "@/lib/data";
 
-export default function Now() {
+export default function Now({ now }: { now: SiteContent["now"] }) {
   return (
     <Section id="now">
       <FadeIn>
@@ -13,7 +13,7 @@ export default function Now() {
       </FadeIn>
 
       <div className="grid gap-6 md:grid-cols-3">
-        {nowCards.map((card, i) => (
+        {now.cards.map((card, i) => (
           <FadeIn key={card.label} delay={i * 70}>
             <div className="flex h-full flex-col rounded-2xl border border-line bg-white p-7">
               <span className="text-xs font-bold uppercase tracking-[0.18em] text-purple">
@@ -27,17 +27,7 @@ export default function Now() {
         ))}
       </div>
 
-      <p className="mt-8 text-sm text-muted">
-        Inspired by{" "}
-        <a
-          href="https://nownownow.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline underline-offset-2 hover:text-ink"
-        >
-          nownownow.com
-        </a>
-      </p>
+      {now.note && <p className="mt-8 text-sm text-muted">{now.note}</p>}
     </Section>
   );
 }

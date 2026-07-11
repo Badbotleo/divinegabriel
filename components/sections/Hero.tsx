@@ -1,6 +1,6 @@
 import FadeIn from "@/components/FadeIn";
 import { XIcon, InstagramIcon } from "@/components/icons";
-import { socials } from "@/lib/data";
+import { SiteContent } from "@/lib/data";
 
 const pills = [
   { label: "LinkUpNaija", bg: "#534AB7", text: "#FFFFFF" },
@@ -9,19 +9,24 @@ const pills = [
   { label: "BadBot Trading", bg: "#FAC775", text: "#0A0A0A" },
 ];
 
-export default function Hero() {
+export default function Hero({
+  hero,
+  contact,
+}: {
+  hero: SiteContent["hero"];
+  contact: SiteContent["contact"];
+}) {
   return (
     <section
       id="top"
       className="relative flex min-h-screen items-center overflow-hidden border-b border-line bg-white"
     >
-      {/* Subtle dot grid */}
       <div className="dot-grid pointer-events-none absolute inset-0" aria-hidden="true" />
 
       <div className="relative mx-auto w-full max-w-container px-6 py-28">
         <FadeIn>
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted">
-            Founder · Trader · Builder · Abuja, Nigeria 🇳🇬
+            {hero.label}
           </p>
         </FadeIn>
 
@@ -38,10 +43,7 @@ export default function Hero() {
 
         <FadeIn delay={160}>
           <p className="mt-8 max-w-[520px] text-lg leading-relaxed text-muted">
-            I build companies. LinkUpNaija is helping Nigerians find their people
-            IRL. Aerovigil is protecting Nigerian estates and businesses with drone
-            security. EcoFlux Energy is bringing clean solar power to homes and
-            communities across Nigeria.
+            {hero.subheading}
           </p>
         </FadeIn>
 
@@ -83,7 +85,7 @@ export default function Hero() {
             </p>
             <div className="flex items-center gap-4">
               <a
-                href={socials.x}
+                href={contact.xUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X (Twitter)"
@@ -92,7 +94,7 @@ export default function Hero() {
                 <XIcon className="h-5 w-5" />
               </a>
               <a
-                href={socials.instagram}
+                href={contact.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"

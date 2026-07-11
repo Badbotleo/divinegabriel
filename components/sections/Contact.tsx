@@ -1,15 +1,28 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import { Section, SectionHeading } from "@/components/ui";
-import { contactCards, subjects } from "@/lib/data";
+import { SiteContent, subjects } from "@/lib/data";
 
 type Status = "idle" | "sending" | "success" | "error";
 
-export default function Contact() {
+export default function Contact({
+  contact,
+  qr,
+}: {
+  contact: SiteContent["contact"];
+  qr: string;
+}) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
+
+  const contactCards = [
+    { label: "Email", value: contact.email, href: `mailto:${contact.email}` },
+    { label: "X / Twitter", value: contact.x, href: contact.xUrl },
+    { label: "Instagram", value: contact.instagram, href: contact.instagramUrl },
+  ];
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -25,12 +38,10 @@ export default function Contact() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
         throw new Error(body.error || "Something went wrong. Please try again.");
       }
-
       setStatus("success");
       form.reset();
     } catch (err) {
@@ -51,7 +62,6 @@ export default function Contact() {
         />
       </FadeIn>
 
-      {/* Contact cards */}
       <div className="grid gap-4 sm:grid-cols-3">
         {contactCards.map((card, i) => (
           <FadeIn key={card.label} delay={i * 60}>
@@ -72,97 +82,97 @@ export default function Contact() {
         ))}
       </div>
 
-      {/* Form */}
-      <FadeIn delay={120}>
-        <form
-          onSubmit={handleSubmit}
-          className="mt-10 rounded-2xl border border-line bg-white p-6 md:p-8"
-        >
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div>
-              <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-ink">
-                Name
-              </label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                placeholder="Your name"
-                className={inputClass}
-              />
+      <div className="mt-6 grid gap-6 lg:grid-cols-3">
+        {/* Form */}
+        <FadeIn delay={120} className="lg:col-span-2">
+          <form
+            onSubmit={handleSubmit}
+            className="rounded-2xl border border-line bg-white p-6 md:p-8"
+          >
+            <div className="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-ink">
+                  Name
+                </label>
+                <input id="name" name="name" type="text" required placeholder="Your name" className={inputClass} />
+              </div>
+              <div>
+                <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-ink">
+                  Email
+                </label>
+                <input id="email" name="email" type="email" required placeholder="you@example.com" className={inputClass} />
+              </div>
             </div>
-            <div>
-              <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-ink">
-                Email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                placeholder="you@example.com"
-                className={inputClass}
-              />
-            </div>
-          </div>
 
-          <div className="mt-5">
-            <label htmlFor="subject" className="mb-1.5 block text-sm font-medium text-ink">
-              Subject
-            </label>
-            <select
-              id="subject"
-              name="subject"
-              required
-              defaultValue=""
-              className={inputClass}
-            >
-              <option value="" disabled>
-                Select a topic
-              </option>
-              {subjects.map((s) => (
-                <option key={s} value={s}>
-                  {s}
+            <div className="mt-5">
+              <label htmlFor="subject" className="mb-1.5 block text-sm font-medium text-ink">
+                Subject
+              </label>
+              <select id="subject" name="subject" required defaultValue="" className={inputClass}>
+                <option value="" disabled>
+                  Select a topic
                 </option>
-              ))}
-            </select>
-          </div>
+                {subjects.map((s) => (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-          <div className="mt-5">
-            <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-ink">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              required
-              rows={5}
-              placeholder="Tell me what's on your mind…"
-              className={`${inputClass} resize-y`}
+            <div className="mt-5">
+              <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-ink">
+                Message
+              </label>
+              <textarea id="message" name="message" required rows={5} placeholder="Tell me what's on your mind…" className={`${inputClass} resize-y`} />
+            </div>
+
+            <div className="mt-6 flex flex-wrap items-center gap-4">
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="rounded-lg bg-ink px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60"
+              >
+                {status === "sending" ? "Sending…" : "Send"}
+              </button>
+              {status === "success" && (
+                <span className="text-sm font-medium text-green">
+                  Thanks — your message has been sent.
+                </span>
+              )}
+              {status === "error" && (
+                <span className="text-sm font-medium text-red-600">{error}</span>
+              )}
+            </div>
+          </form>
+        </FadeIn>
+
+        {/* QR / save contact */}
+        <FadeIn delay={180}>
+          <div className="flex h-full flex-col items-center justify-center rounded-2xl border border-line bg-white p-6 text-center">
+            <span className="text-xs font-bold uppercase tracking-[0.15em] text-muted">
+              Scan to save my contact
+            </span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={qr}
+              alt="QR code to save Divine's contact details"
+              width={160}
+              height={160}
+              className="mt-4 h-40 w-40 rounded-lg border border-line"
             />
-          </div>
-
-          <div className="mt-6 flex flex-wrap items-center gap-4">
-            <button
-              type="submit"
-              disabled={status === "sending"}
-              className="rounded-lg bg-ink px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60"
+            <p className="mt-4 text-sm text-muted">
+              Point your camera to add me to your contacts.
+            </p>
+            <Link
+              href="/card"
+              className="mt-4 text-sm font-semibold text-purple transition-opacity hover:opacity-70"
             >
-              {status === "sending" ? "Sending…" : "Send"}
-            </button>
-
-            {status === "success" && (
-              <span className="text-sm font-medium text-green">
-                Thanks — your message has been sent.
-              </span>
-            )}
-            {status === "error" && (
-              <span className="text-sm font-medium text-red-600">{error}</span>
-            )}
+              Open my contact card →
+            </Link>
           </div>
-        </form>
-      </FadeIn>
+        </FadeIn>
+      </div>
     </Section>
   );
 }

@@ -8,22 +8,30 @@ import Journal from "@/components/sections/Journal";
 import Playlist from "@/components/sections/Playlist";
 import Now from "@/components/sections/Now";
 import Contact from "@/components/sections/Contact";
+import { getContent } from "@/lib/content";
+import { getContactQrDataUrl } from "@/lib/qr";
 
-export default function Home() {
+// Re-fetch dashboard-edited content at most once a minute.
+export const revalidate = 60;
+
+export default async function Home() {
+  const content = await getContent();
+  const qr = await getContactQrDataUrl();
+
   return (
     <>
       <Navbar />
       <main>
-        <Hero />
-        <About />
-        <Ventures />
-        <Timeline />
-        <Journal />
-        <Playlist />
-        <Now />
-        <Contact />
+        <Hero hero={content.hero} contact={content.contact} />
+        <About about={content.about} stats={content.stats} />
+        <Ventures ventures={content.ventures} />
+        <Timeline items={content.timeline} />
+        <Journal posts={content.journal} />
+        <Playlist playlist={content.playlist} />
+        <Now now={content.now} />
+        <Contact contact={content.contact} qr={qr} />
       </main>
-      <Footer />
+      <Footer contact={content.contact} />
     </>
   );
 }

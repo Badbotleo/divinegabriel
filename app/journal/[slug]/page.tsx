@@ -2,33 +2,34 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { journalPosts } from "@/lib/data";
+import { defaultContent } from "@/lib/data";
+import { getContent } from "@/lib/content";
 
 export function generateStaticParams() {
-  return journalPosts.map((post) => ({ slug: post.slug }));
+  return defaultContent.journal.map((post) => ({ slug: post.slug }));
 }
 
-function getPost(slug: string) {
-  return journalPosts.find((p) => p.slug === slug);
-}
-
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
   params: { slug: string };
-}): Metadata {
-  const post = getPost(params.slug);
-  if (!post) {
-    return { title: "Journal — Ugokanu Divine Gabriel" };
-  }
+}): Promise<Metadata> {
+  const content = await getContent();
+  const post = content.journal.find((p) => p.slug === params.slug);
+  if (!post) return { title: "Journal — Ugokanu Divine Gabriel" };
   return {
     title: `${post.title} — Ugokanu Divine Gabriel`,
     description: post.excerpt,
   };
 }
 
-export default function JournalPost({ params }: { params: { slug: string } }) {
-  const post = getPost(params.slug);
+export default async function JournalPost({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const content = await getContent();
+  const post = content.journal.find((p) => p.slug === params.slug);
 
   return (
     <>
@@ -54,9 +55,7 @@ export default function JournalPost({ params }: { params: { slug: string } }) {
               {post.title}
             </h1>
 
-            <p className="mt-5 text-lg leading-relaxed text-muted">
-              {post.excerpt}
-            </p>
+            <p className="mt-5 text-lg leading-relaxed text-muted">{post.excerpt}</p>
 
             <div className="mt-10 rounded-2xl border border-line bg-panel p-8 text-center">
               <span className="inline-flex items-center rounded-full border border-line bg-white px-3 py-1 text-xs font-medium uppercase tracking-wide text-muted">
@@ -83,7 +82,7 @@ export default function JournalPost({ params }: { params: { slug: string } }) {
           </div>
         )}
       </main>
-      <Footer />
+      <Footer contact={content.contact} />
     </>
   );
 }
