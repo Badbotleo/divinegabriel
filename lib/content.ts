@@ -7,25 +7,32 @@ function isObject(v: unknown): v is Record<string, unknown> {
 }
 
 /**
- * Deep-merge an overrides object on top of a base. Arrays and
- * primitives from `override` replace the base value entirely;
- * plain objects are merged key by key.
+ * Shape-preserving deep-merge of `override` on top of `base`.
+ *
+ * The override may never change the fundamental *type* of a node
+ * (array ↔ object ↔ primitive). This keeps a stale override from an
+ * older content schema from ever breaking the site — mismatched
+ * nodes simply keep the default. Arrays replace wholesale; plain
+ * objects merge key by key.
  */
 function deepMerge<T>(base: T, override: unknown): T {
-  if (!isObject(override)) return base;
-  if (!isObject(base)) return (override as T) ?? base;
-
-  const out: Record<string, unknown> = { ...(base as Record<string, unknown>) };
-  for (const [key, value] of Object.entries(override)) {
-    if (value === undefined) continue;
-    const baseValue = (base as Record<string, unknown>)[key];
-    if (isObject(baseValue) && isObject(value)) {
-      out[key] = deepMerge(baseValue, value);
-    } else {
-      out[key] = value;
-    }
+  // Arrays: only accept an array override, else keep the default.
+  if (Array.isArray(base)) {
+    return (Array.isArray(override) ? override : base) as T;
   }
-  return out as T;
+  // Objects: only merge an object override, else keep the default.
+  if (isObject(base)) {
+    if (!isObject(override)) return base;
+    const out: Record<string, unknown> = { ...(base as Record<string, unknown>) };
+    for (const [key, value] of Object.entries(override)) {
+      if (value === undefined) continue;
+      if (!(key in out)) continue; // ignore unknown/legacy keys
+      out[key] = deepMerge(out[key], value);
+    }
+    return out as T;
+  }
+  // Primitives: take the override when present.
+  return (override === undefined || override === null ? base : (override as T));
 }
 
 /**

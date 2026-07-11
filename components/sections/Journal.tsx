@@ -5,7 +5,7 @@ import { SubstackMark } from "@/components/logos";
 import { SiteContent } from "@/lib/data";
 
 export default function Journal({ journal }: { journal: SiteContent["journal"] }) {
-  const posts = journal.posts.filter((p) => p.published !== false);
+  const posts = (journal.posts ?? []).filter((p) => p.published !== false);
   const substack = journal.substackUrl?.trim();
 
   return (

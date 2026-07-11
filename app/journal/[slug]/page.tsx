@@ -17,7 +17,7 @@ export async function generateMetadata({
   params: { slug: string };
 }): Promise<Metadata> {
   const content = await getContent();
-  const post = content.journal.posts.find((p) => p.slug === params.slug);
+  const post = (content.journal.posts ?? []).find((p) => p.slug === params.slug);
   if (!post) return { title: "Journal — Ugokanu Divine Gabriel" };
   return {
     title: `${post.title} — Ugokanu Divine Gabriel`,
@@ -32,7 +32,7 @@ export default async function JournalPost({
   params: { slug: string };
 }) {
   const content = await getContent();
-  const post = content.journal.posts.find((p) => p.slug === params.slug);
+  const post = (content.journal.posts ?? []).find((p) => p.slug === params.slug);
   const paragraphs = post?.body?.trim()
     ? post.body.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean)
     : [];
