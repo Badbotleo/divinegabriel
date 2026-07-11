@@ -1,6 +1,7 @@
 import FadeIn from "@/components/FadeIn";
 import { Section, SectionHeading } from "@/components/ui";
 import { MusicNoteIcon } from "@/components/icons";
+import { SpotifyMark, AppleMark } from "@/components/logos";
 import { ACCENT, SiteContent } from "@/lib/data";
 
 export default function Playlist({
@@ -40,22 +41,24 @@ export default function Playlist({
         ))}
       </div>
 
-      <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold">
+      <div className="mt-8 flex flex-wrap gap-3">
         <a
           href={playlist.spotifyUrl || "#"}
           target={playlist.spotifyUrl && playlist.spotifyUrl !== "#" ? "_blank" : undefined}
           rel="noopener noreferrer"
-          className="text-ink transition-opacity hover:opacity-70"
+          className="inline-flex items-center gap-2.5 rounded-full border border-line bg-white px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-muted/40"
         >
-          Full playlist on Spotify →
+          <SpotifyMark size={20} />
+          Spotify
         </a>
         <a
           href={playlist.appleUrl || "#"}
           target={playlist.appleUrl && playlist.appleUrl !== "#" ? "_blank" : undefined}
           rel="noopener noreferrer"
-          className="text-ink transition-opacity hover:opacity-70"
+          className="inline-flex items-center gap-2.5 rounded-full border border-line bg-white px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-muted/40"
         >
-          Listen on Apple Music →
+          <AppleMark size={19} className="text-ink" />
+          Apple Music
         </a>
       </div>
     </Section>

@@ -92,6 +92,14 @@ export type JournalPost = {
   excerpt: string;
   date: string;
   tag: string;
+  coverImage?: string;
+  body?: string;
+  published?: boolean;
+};
+
+export type Journal = {
+  substackUrl: string;
+  posts: JournalPost[];
 };
 export type Song = { artist: string; title: string; color: AccentColor };
 export type NowCard = { label: string; body: string };
@@ -102,7 +110,7 @@ export type SiteContent = {
   stats: Stat[];
   ventures: Record<string, VentureContent>;
   timeline: TimelineItem[];
-  journal: JournalPost[];
+  journal: Journal;
   playlist: { spotifyUrl: string; appleUrl: string; songs: Song[] };
   now: { note?: string; cards: NowCard[] };
   contact: {
@@ -235,18 +243,18 @@ export const defaultContent: SiteContent = {
       color: "gold",
     },
     {
-      year: "Early 2026",
-      title: "First client work",
-      description:
-        "Built and deployed a full personal brand website for model and creator Abiola Ayeni using Next.js, TypeScript and Vercel. First paid development project.",
-      color: "purple",
-    },
-    {
-      year: "Mid 2026",
+      year: "Late 2025",
       title: "Aerovigil",
       description:
         "Founded and registered Aerovigil at CAC. Nigeria's drone security and surveillance company. Currently operating across estates, events and corporate facilities in Abuja.",
       color: "navy",
+    },
+    {
+      year: "Early 2026",
+      title: "EcoFlux Energy",
+      description:
+        "Founded EcoFlux Energy to tackle Nigeria's power crisis. Designing solar systems for residential homes, rural communities and commercial buildings.",
+      color: "green",
     },
     {
       year: "Mid 2026",
@@ -263,13 +271,6 @@ export const defaultContent: SiteContent = {
       color: "purple",
     },
     {
-      year: "2026",
-      title: "EcoFlux Energy",
-      description:
-        "Founded EcoFlux Energy to tackle Nigeria's power crisis. Designing solar systems for residential homes, rural communities and commercial buildings.",
-      color: "green",
-    },
-    {
       year: "Now",
       title: "Building",
       description:
@@ -277,32 +278,38 @@ export const defaultContent: SiteContent = {
       color: "gold",
     },
   ],
-  journal: [
-    {
-      slug: "why-i-built-linkupnaija",
-      title: "Why I built LinkUpNaija",
-      excerpt:
-        "I was tired of boring weekends in Abuja. Here is the full story of how I went from frustrated to founder.",
-      date: "July 2026",
-      tag: "Building",
-    },
-    {
-      slug: "running-three-ventures-at-once",
-      title: "Running three ventures at once",
-      excerpt:
-        "LinkUpNaija, Aerovigil, EcoFlux. How I manage focus, energy and priorities across multiple companies.",
-      date: "July 2026",
-      tag: "Entrepreneurship",
-    },
-    {
-      slug: "what-trading-taught-me-about-building",
-      title: "What trading taught me about building",
-      excerpt:
-        "Discipline, systems, and not chasing entries. The lessons from the markets apply everywhere.",
-      date: "July 2026",
-      tag: "Trading",
-    },
-  ],
+  journal: {
+    substackUrl: "",
+    posts: [
+      {
+        slug: "why-i-built-linkupnaija",
+        title: "Why I built LinkUpNaija",
+        excerpt:
+          "I was tired of boring weekends in Abuja. Here is the full story of how I went from frustrated to founder.",
+        date: "July 2026",
+        tag: "Building",
+        published: true,
+      },
+      {
+        slug: "running-three-ventures-at-once",
+        title: "Running three ventures at once",
+        excerpt:
+          "LinkUpNaija, Aerovigil, EcoFlux. How I manage focus, energy and priorities across multiple companies.",
+        date: "July 2026",
+        tag: "Entrepreneurship",
+        published: true,
+      },
+      {
+        slug: "what-trading-taught-me-about-building",
+        title: "What trading taught me about building",
+        excerpt:
+          "Discipline, systems, and not chasing entries. The lessons from the markets apply everywhere.",
+        date: "July 2026",
+        tag: "Trading",
+        published: true,
+      },
+    ],
+  },
   playlist: {
     spotifyUrl: "#",
     appleUrl: "#",

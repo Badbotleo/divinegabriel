@@ -5,8 +5,10 @@ import Footer from "@/components/Footer";
 import { defaultContent } from "@/lib/data";
 import { getContent } from "@/lib/content";
 
+export const revalidate = 60;
+
 export function generateStaticParams() {
-  return defaultContent.journal.map((post) => ({ slug: post.slug }));
+  return defaultContent.journal.posts.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
@@ -15,11 +17,12 @@ export async function generateMetadata({
   params: { slug: string };
 }): Promise<Metadata> {
   const content = await getContent();
-  const post = content.journal.find((p) => p.slug === params.slug);
+  const post = content.journal.posts.find((p) => p.slug === params.slug);
   if (!post) return { title: "Journal — Ugokanu Divine Gabriel" };
   return {
     title: `${post.title} — Ugokanu Divine Gabriel`,
     description: post.excerpt,
+    openGraph: post.coverImage ? { images: [post.coverImage] } : undefined,
   };
 }
 
@@ -29,7 +32,10 @@ export default async function JournalPost({
   params: { slug: string };
 }) {
   const content = await getContent();
-  const post = content.journal.find((p) => p.slug === params.slug);
+  const post = content.journal.posts.find((p) => p.slug === params.slug);
+  const paragraphs = post?.body?.trim()
+    ? post.body.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean)
+    : [];
 
   return (
     <>
@@ -57,15 +63,32 @@ export default async function JournalPost({
 
             <p className="mt-5 text-lg leading-relaxed text-muted">{post.excerpt}</p>
 
-            <div className="mt-10 rounded-2xl border border-line bg-panel p-8 text-center">
-              <span className="inline-flex items-center rounded-full border border-line bg-white px-3 py-1 text-xs font-medium uppercase tracking-wide text-muted">
-                Coming soon
-              </span>
-              <p className="mt-4 text-base leading-relaxed text-muted">
-                The full post is being written. Check back soon — real thoughts on
-                building, trading and life in Nigeria are on the way.
-              </p>
-            </div>
+            {post.coverImage && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={post.coverImage}
+                alt={post.title}
+                className="mt-8 w-full rounded-2xl border border-line object-cover"
+              />
+            )}
+
+            {paragraphs.length > 0 ? (
+              <div className="mt-8 space-y-5 text-lg leading-relaxed text-ink/90">
+                {paragraphs.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </div>
+            ) : (
+              <div className="mt-10 rounded-2xl border border-line bg-panel p-8 text-center">
+                <span className="inline-flex items-center rounded-full border border-line bg-white px-3 py-1 text-xs font-medium uppercase tracking-wide text-muted">
+                  Coming soon
+                </span>
+                <p className="mt-4 text-base leading-relaxed text-muted">
+                  The full post is being written. Check back soon — real thoughts on
+                  building, trading and life in Nigeria are on the way.
+                </p>
+              </div>
+            )}
           </article>
         ) : (
           <div className="mt-16 text-center">

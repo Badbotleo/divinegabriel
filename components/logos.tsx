@@ -79,6 +79,43 @@ export function SafeDepositMark({ size = 40, className = "" }: MarkProps) {
   );
 }
 
+/* Spotify — green circle with sound waves */
+export function SpotifyMark({ size = 20, className = "" }: MarkProps) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} className={className} aria-hidden="true">
+      <circle cx="12" cy="12" r="12" fill="#1DB954" />
+      <path
+        d="M6.4 10.2c3.4-1 7.7-.8 10.9 1.1M7 13.3c2.8-.8 6-.6 8.5 1M7.6 16.1c2.2-.6 4.6-.4 6.5.8"
+        stroke="#fff"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        fill="none"
+      />
+    </svg>
+  );
+}
+
+/* Apple — logo silhouette */
+export function AppleMark({ size = 20, className = "" }: MarkProps) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} className={className} fill="currentColor" aria-hidden="true">
+      <path d="M17.05 12.5c-.03-2.6 2.12-3.84 2.22-3.9-1.21-1.77-3.09-2.01-3.76-2.04-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.9-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.79 1.3 10.34.86 1.25 1.88 2.65 3.22 2.6 1.29-.05 1.78-.83 3.34-.83 1.56 0 2 .83 3.37.81 1.39-.03 2.27-1.27 3.12-2.53.98-1.45 1.39-2.85 1.41-2.92-.03-.01-2.7-1.04-2.72-4.14Zm-2.6-7.6c.71-.86 1.19-2.06 1.06-3.25-1.02.04-2.26.68-2.99 1.54-.66.76-1.23 1.98-1.08 3.15 1.14.09 2.3-.58 3.01-1.44Z" />
+    </svg>
+  );
+}
+
+/* Substack — orange mark */
+export function SubstackMark({ size = 20, className = "" }: MarkProps) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} className={className} aria-hidden="true">
+      <rect width="24" height="24" rx="4" fill="#FF6719" />
+      <rect x="6" y="6.5" width="12" height="1.9" fill="#fff" />
+      <rect x="6" y="10" width="12" height="1.9" fill="#fff" />
+      <path d="M6 13.6h12V19l-6-2.7L6 19v-5.4Z" fill="#fff" />
+    </svg>
+  );
+}
+
 const VENTURE_MARKS: Record<string, (p: MarkProps) => JSX.Element> = {
   linkupnaija: LinkUpNaijaMark,
   aerovigil: AerovigilMark,

@@ -26,7 +26,7 @@ export default async function Home() {
         <About about={content.about} stats={content.stats} />
         <Ventures ventures={content.ventures} />
         <Timeline items={content.timeline} />
-        <Journal posts={content.journal} />
+        <Journal journal={content.journal} />
         <Playlist playlist={content.playlist} />
         <Now now={content.now} />
         <Contact contact={content.contact} qr={qr} />

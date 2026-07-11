@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { SiteContent, ventureOrder } from "@/lib/data";
+import ImageUpload from "./ImageUpload";
 
 const ventureNames: Record<string, string> = {
   linkupnaija: "LinkUpNaija",
@@ -9,6 +10,14 @@ const ventureNames: Record<string, string> = {
   ecoflux: "EcoFlux Energy",
   badbot: "BadBot Trading",
 };
+
+function slugify(s: string): string {
+  return s
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
 
 type Status = "idle" | "saving" | "saved" | "error";
 
@@ -222,6 +231,105 @@ export default function ContentEditor({
               </div>
             );
           })}
+        </div>
+      </Card>
+
+      {/* Journal */}
+      <Card title="Journal">
+        <Field
+          label="Substack URL"
+          value={content.journal.substackUrl}
+          placeholder="https://yourname.substack.com"
+          onChange={(v) => set((d) => (d.journal.substackUrl = v))}
+        />
+        <div className="space-y-6">
+          {content.journal.posts.map((post, i) => (
+            <div key={i} className="rounded-xl border border-line p-4">
+              <div className="mb-3 flex items-center justify-between">
+                <span className="text-sm font-bold text-ink">Post {i + 1}</span>
+                <button
+                  type="button"
+                  onClick={() => set((d) => void d.journal.posts.splice(i, 1))}
+                  className="text-xs text-muted transition-colors hover:text-red-600"
+                >
+                  Remove
+                </button>
+              </div>
+              <div className="space-y-3">
+                <Field
+                  label="Title"
+                  value={post.title}
+                  onChange={(v) => set((d) => (d.journal.posts[i].title = v))}
+                />
+                <div className="grid gap-3 sm:grid-cols-3">
+                  <Field
+                    label="Slug (URL)"
+                    value={post.slug}
+                    onChange={(v) => set((d) => (d.journal.posts[i].slug = slugify(v)))}
+                  />
+                  <Field
+                    label="Tag"
+                    value={post.tag}
+                    onChange={(v) => set((d) => (d.journal.posts[i].tag = v))}
+                  />
+                  <Field
+                    label="Date"
+                    value={post.date}
+                    onChange={(v) => set((d) => (d.journal.posts[i].date = v))}
+                  />
+                </div>
+                <Area
+                  label="Excerpt"
+                  rows={2}
+                  value={post.excerpt}
+                  onChange={(v) => set((d) => (d.journal.posts[i].excerpt = v))}
+                />
+                <ImageUpload
+                  value={post.coverImage}
+                  onChange={(url) =>
+                    set((d) => (d.journal.posts[i].coverImage = url || undefined))
+                  }
+                />
+                <Area
+                  label="Body — full post (blank = 'coming soon'). Separate paragraphs with a blank line."
+                  rows={8}
+                  value={post.body || ""}
+                  onChange={(v) => set((d) => (d.journal.posts[i].body = v))}
+                />
+                <label className="flex items-center gap-2 text-sm text-ink">
+                  <input
+                    type="checkbox"
+                    checked={post.published !== false}
+                    onChange={(e) =>
+                      set((d) => (d.journal.posts[i].published = e.target.checked))
+                    }
+                  />
+                  Published (visible on the site)
+                </label>
+              </div>
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={() =>
+              set((d) =>
+                void d.journal.posts.push({
+                  slug: `new-post-${Date.now().toString(36)}`,
+                  title: "New post",
+                  excerpt: "",
+                  date: new Date().toLocaleDateString("en-US", {
+                    month: "long",
+                    year: "numeric",
+                  }),
+                  tag: "Building",
+                  published: false,
+                })
+              )
+            }
+            className="rounded-lg border border-dashed border-line px-4 py-2 text-sm font-semibold text-ink transition-colors hover:bg-panel"
+          >
+            + Add post
+          </button>
         </div>
       </Card>
 
