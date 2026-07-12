@@ -126,13 +126,13 @@ export const defaultContent: SiteContent = {
   hero: {
     label: "FOUNDER · TRADER · BUILDER · ABUJA, NIGERIA 🇳🇬",
     subheading:
-      "I build companies. LinkUpNaija is helping Nigerians find their people IRL. Aerovigil is protecting Nigerian estates and businesses with drone security. EcoFlux Energy is bringing clean solar power to homes and communities across Nigeria.",
+      "I build companies in Nigeria — social events, drone security and clean energy — and trade the markets. Find a problem, build the fix, ship it.",
   },
   about: {
     paragraphs: [
-      "My story doesn't start with a business plan. It starts in 2022, when I lost my mom. The grief pulled me out of college and into a long, dark stretch of depression. Building is how I found my way back.",
-      "I started working with my uncle on Vii Media, a digital marketing company — and it became my real education: cold calling and cold email, website development, Google and Meta Ads, SEO, and sales funnels. I learned how to find customers and actually close them. Then I co-founded Safe Security Deposit, a service that makes rental security deposits fair between landlords and tenants. Challenges forced us to pause it — but we're not done. We'll be back.",
-      "Today I run three ventures — LinkUpNaija (social events), Aerovigil (drone security) and EcoFlux Energy (solar) — and I trade the markets independently as BadBot Trading. I don't wait for the right conditions. I find a problem, build the solution, and put it in the market. Systems, discipline, and showing up every single day.",
+      "In 2022 I lost my mom. Grief pulled me out of college. Building is how I found my way back.",
+      "I cut my teeth at Vii Media — outreach, websites, ads, SEO, funnels — then co-founded Safe Security Deposit. We paused it. We'll be back.",
+      "Now I run three ventures and trade as BadBot Trading. I don't wait for perfect conditions. I find a problem, build the fix, and ship.",
     ],
   },
   stats: [
@@ -151,7 +151,7 @@ export const defaultContent: SiteContent = {
       title: "LinkUpNaija",
       tagline: "Nigeria's social events platform.",
       description:
-        "Nigeria's social events platform. From family picnics and book clubs to game nights and rooftop dinners — LinkUpNaija helps Nigerians find real events, meet real people, and build genuine connections. Not just parties. Real moments.",
+        "Nigeria's social events platform. Find real events, meet real people, build genuine connections.",
       longDescription:
         "LinkUpNaija is where Nigerians find their people in real life. Browse and host events across 20+ categories in all 36 states — book clubs, game nights, picnics, rooftop dinners, fitness meetups and more. An AI concierge helps you discover what's happening near you, Paystack powers ticketing, and a Pro tier unlocks premium hosting tools. Built entirely solo on a modern, scalable stack.",
       stats: ["20+ Categories", "All 36 States", "AI-Powered", "₦9,900/mo Pro"],
@@ -165,7 +165,7 @@ export const defaultContent: SiteContent = {
       title: "Aerovigil",
       tagline: "Drone security & surveillance across Nigeria.",
       description:
-        "Professional drone security and surveillance for estates, corporate facilities, events, and critical infrastructure across Nigeria. Aerovigil provides aerial monitoring, perimeter security, and real-time surveillance intelligence using advanced drone technology.",
+        "Drone security and surveillance for estates, businesses, events and infrastructure across Nigeria.",
       longDescription:
         "Aerovigil brings eyes to the sky for Nigerian estates, corporate campuses, events and critical infrastructure. Our drones deliver aerial monitoring, perimeter security and real-time surveillance intelligence — spotting threats before they reach the ground. CAC registered and operating out of Abuja, we're building the aerial security layer Nigeria's fastest-growing communities need.",
       stats: ["Estates", "Corporate", "Events", "Infrastructure"],
@@ -185,7 +185,7 @@ export const defaultContent: SiteContent = {
       title: "EcoFlux Energy",
       tagline: "Clean solar power for every Nigerian home.",
       description:
-        "Making clean solar energy accessible across Nigeria. EcoFlux Energy designs and installs solar power systems for residential homes, rural communities, and commercial buildings. Building toward a future where every Nigerian home has reliable, affordable, clean power.",
+        "Clean solar power for homes, communities and businesses across Nigeria.",
       longDescription:
         "EcoFlux Energy exists to end the darkness. We design and install solar power systems for homes, rural communities and commercial buildings — turning Nigeria's biggest constraint, unreliable power, into an opportunity. From single-home setups to community electrification, we're building toward a future where clean, affordable, reliable energy is the default, not the luxury.",
       stats: ["Residential", "Rural Communities", "Commercial"],
@@ -205,7 +205,7 @@ export const defaultContent: SiteContent = {
       title: "BadBot Trading",
       tagline: "A proprietary system I built and operate.",
       description:
-        "A proprietary trading system I built and operate independently. Top-down Fibonacci analysis with DXY correlation across major pairs. Discipline, risk management, and systematic execution. No external capital — this is personal.",
+        "A proprietary trading system I built and run. Fibonacci, DXY correlation, discipline. No external capital.",
       longDescription:
         "BadBot Trading is my proprietary system, built from scratch and operated independently. It runs top-down Fibonacci analysis with DXY correlation across XAUUSD, GBPUSD and USTECH100 — every setup documented, every rule tested. No external capital, no noise: just discipline, risk management and systematic execution on funded prop accounts.",
       stats: ["XAUUSD", "GBPUSD", "USTECH100"],
@@ -218,63 +218,62 @@ export const defaultContent: SiteContent = {
       year: "2022",
       title: "A hard reset",
       description:
-        "I lost my mom. Grief pulled me out of college and into a long stretch of depression. It was the lowest point of my life — and, though I couldn't see it then, the beginning of everything.",
+        "Lost my mom. Dropped out of college. Rock bottom — and the beginning of everything.",
       color: "slate",
     },
     {
       year: "2022",
       title: "Vii Media",
       description:
-        "I started working with my uncle to build Vii Media, a digital marketing company. It became my real education: cold calling and cold email, website development, Google and Meta Ads, SEO, and sales funnels. I learned how to find customers and close them.",
+        "Joined my uncle to build a digital marketing company. My real education: outreach, websites, ads, SEO and funnels.",
       color: "blue",
     },
     {
       year: "2023",
       title: "Safe Security Deposit",
       description:
-        "Co-founded Safe Security Deposit — a service that manages rental security deposits and makes sure they're settled fairly between landlords and tenants. We ran it for a while before challenges forced us to pause. It's not dead. We'll be back.",
+        "Co-founded a service making rental deposits fair between landlords and tenants. Paused, not finished.",
       color: "slate",
     },
     {
       year: "2025",
       title: "BadBot Trading",
       description:
-        "Started trading financial markets independently. Built a proprietary Fibonacci-based system from scratch. Got funded on a prop account and began operating seriously.",
+        "Started trading. Built a Fibonacci system from scratch. Got funded on a prop account.",
       color: "gold",
     },
     {
       year: "Late 2025",
       title: "Aerovigil",
       description:
-        "Founded and registered Aerovigil at CAC. Nigeria's drone security and surveillance company. Currently operating across estates, events and corporate facilities in Abuja.",
+        "Founded and CAC-registered Nigeria's drone security company. Operating across Abuja.",
       color: "navy",
     },
     {
       year: "Early 2026",
       title: "EcoFlux Energy",
       description:
-        "Founded EcoFlux Energy to tackle Nigeria's power crisis. Designing solar systems for residential homes, rural communities and commercial buildings.",
+        "Founded EcoFlux to take on Nigeria's power crisis with solar.",
       color: "green",
     },
     {
       year: "Mid 2026",
       title: "LinkUpNaija",
       description:
-        "Identified the gap in Nigeria's social events market. Started building. Deployed the full platform — events, venues, AI chatbot, payments, Pro subscription and FC26 tournament.",
+        "Spotted the gap in Nigeria's social scene and started building the full platform.",
       color: "purple",
     },
     {
       year: "July 2026",
       title: "LinkUpNaija goes live",
-      description:
-        "linkupnaija.com launches publicly. Full stack: Next.js 14, Supabase, Paystack, Claude AI, Resend, Google Analytics. Built entirely solo.",
+      description: "linkupnaija.com launches publicly. Full stack, built solo.",
       color: "purple",
     },
     {
       year: "Now",
       title: "Building",
       description:
-        "Growing three ventures simultaneously. Documenting the journey. Building toward pan-African expansion.",
+        "Three ventures at once. Documenting the journey. Building for Africa.",
       color: "gold",
     },
   ],
@@ -326,15 +325,15 @@ export const defaultContent: SiteContent = {
     cards: [
       {
         label: "BUILDING",
-        body: "Growing LinkUpNaija across Nigeria toward 1,000 active users. Running Aerovigil operations in Abuja. Laying groundwork for EcoFlux Energy's first installations.",
+        body: "Scaling LinkUpNaija toward 1,000 users. Running Aerovigil in Abuja. Prepping EcoFlux's first installs.",
       },
       {
         label: "TRADING",
-        body: "Operating BadBot Trading on funded prop accounts. Refining the Fibonacci system and documenting every setup for the trading journal.",
+        body: "Running BadBot on funded accounts. Refining the system, documenting every setup.",
       },
       {
         label: "EXPLORING",
-        body: "Researching drone regulation in West Africa for Aerovigil expansion. Exploring solar financing models for EcoFlux rural community projects.",
+        body: "Drone regulation across West Africa. Solar financing for rural communities.",
       },
     ],
   },

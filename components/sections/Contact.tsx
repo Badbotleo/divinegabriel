@@ -58,7 +58,7 @@ export default function Contact({
       <FadeIn>
         <SectionHeading
           title="Get in touch"
-          subtitle="Whether you want to collaborate, invest in one of my ventures, or just say hello — I am always open."
+          subtitle="Collaborate, invest, or just say hello. Always open."
         />
       </FadeIn>
 
