@@ -176,7 +176,7 @@ export const defaultContent: SiteContent = {
         "Infrastructure Inspection",
       ],
       statusNote: "CAC Registered · Abuja, Nigeria",
-      comingSoon: "aerovigil.com — coming soon",
+      link: { label: "Visit aerovigil.com.ng", href: "https://aerovigil.com.ng" },
     },
     ecoflux: {
       status: "BUILDING",
