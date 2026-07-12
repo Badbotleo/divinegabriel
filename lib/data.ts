@@ -207,9 +207,9 @@ export const defaultContent: SiteContent = {
       description:
         "A proprietary trading system I built and run. Fibonacci, DXY correlation, discipline. No external capital.",
       longDescription:
-        "BadBot Trading is my proprietary system, built from scratch and operated independently. It runs top-down Fibonacci analysis with DXY correlation across XAUUSD, GBPUSD and USTECH100 — every setup documented, every rule tested. No external capital, no noise: just discipline, risk management and systematic execution on funded prop accounts.",
+        "BadBot Trading is my proprietary system, built from scratch and operated independently. It runs top-down Fibonacci analysis with DXY correlation across XAUUSD, GBPUSD and USTECH100 — every setup documented, every rule tested. No external capital, no noise: just discipline, risk management and systematic execution.",
       stats: ["XAUUSD", "GBPUSD", "USTECH100"],
-      pills: ["Fibonacci Analysis", "DXY Correlation", "Price Action", "Prop Funded"],
+      pills: ["Fibonacci Analysis", "DXY Correlation", "Price Action", "Risk Management"],
       privateNote: "Private — no external link",
     },
   },
@@ -239,7 +239,7 @@ export const defaultContent: SiteContent = {
       year: "2025",
       title: "BadBot Trading",
       description:
-        "Started trading. Built a Fibonacci system from scratch. Got funded on a prop account.",
+        "Started trading the markets. Built a proprietary Fibonacci system from scratch.",
       color: "gold",
     },
     {
@@ -329,7 +329,7 @@ export const defaultContent: SiteContent = {
       },
       {
         label: "TRADING",
-        body: "Running BadBot on funded accounts. Refining the system, documenting every setup.",
+        body: "Running BadBot Trading. Refining the system, documenting every setup.",
       },
       {
         label: "EXPLORING",
