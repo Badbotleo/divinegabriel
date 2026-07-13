@@ -14,9 +14,9 @@ export default function About({
       <div className="grid gap-12 md:grid-cols-5 md:gap-16">
         <div className="md:col-span-3">
           <FadeIn>
-            <SectionHeading title="About me" />
+            <SectionHeading kicker="01 — About" title="About me" />
           </FadeIn>
-          <div className="space-y-6 text-lg leading-relaxed text-muted">
+          <div className="space-y-6 text-lg leading-relaxed text-text-lo">
             {about.paragraphs.map((p, i) => (
               <FadeIn key={i} delay={60 + i * 60}>
                 <p>{p}</p>
@@ -27,13 +27,16 @@ export default function About({
 
         <div className="md:col-span-2">
           <FadeIn delay={120}>
-            <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line">
+            <div className="grid grid-cols-2 gap-3">
               {stats.map((stat) => (
-                <div key={stat.label} className="bg-white p-6">
-                  <div className="text-3xl font-extrabold text-ink">
+                <div
+                  key={stat.label}
+                  className="glass group rounded-2xl p-5 transition-colors hover:border-violet/40"
+                >
+                  <div className="bg-gradient-to-br from-white to-cyan/70 bg-clip-text text-3xl font-extrabold text-transparent">
                     {stat.value}
                   </div>
-                  <div className="mt-1 text-sm leading-snug text-muted">
+                  <div className="mt-1 text-sm leading-snug text-text-lo">
                     {stat.label}
                   </div>
                 </div>

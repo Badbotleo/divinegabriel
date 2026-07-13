@@ -8,7 +8,6 @@
 
 html {
   scroll-behavior: smooth;
-  /* Offset anchor scrolling to clear the fixed navbar */
   scroll-padding-top: 72px;
 }
 
@@ -20,34 +19,113 @@ body {
 }
 
 @layer utilities {
-  /* Subtle dot grid used behind the hero */
-  .dot-grid {
-    background-image: radial-gradient(#0a0a0a 1px, transparent 1px);
-    background-size: 24px 24px;
-    opacity: 0.05;
-  }
-
-  /* Intersection Observer fade-in */
+  /* ── Intersection-Observer reveal ── */
   .fade-in {
     opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    transform: translateY(20px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: opacity, transform;
   }
-
   .fade-in.is-visible {
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* ── Futuristic canvas (homepage root) ── */
+  .future-root {
+    position: relative;
+    isolation: isolate;
+    background:
+      radial-gradient(1100px 700px at 78% -6%, rgba(124, 107, 255, 0.16), transparent 60%),
+      radial-gradient(900px 640px at 8% 8%, rgba(56, 224, 255, 0.1), transparent 55%),
+      #05060b;
+    color: #eef1fa;
+    overflow-x: clip;
+  }
+
+  /* Fine tech grid with a soft radial fade */
+  .grid-overlay {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 52px 52px;
+    -webkit-mask-image: radial-gradient(1000px 700px at 50% 0%, #000 20%, transparent 78%);
+    mask-image: radial-gradient(1000px 700px at 50% 0%, #000 20%, transparent 78%);
+  }
+
+  /* Drifting aurora blobs */
+  .aurora {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(70px);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.028);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .gradient-text {
+    background: linear-gradient(104deg, #ffffff 0%, #cbc6ff 42%, #8fe9ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .mono-label {
+    font-feature-settings: "tnum" 1;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  /* Animated gradient hairline */
+  .hairline-glow {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(124, 107, 255, 0.7),
+      rgba(56, 224, 255, 0.7),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: pan 6s linear infinite;
+  }
 }
 
+@keyframes drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(24px, -30px, 0) scale(1.08); }
+}
+.animate-drift { animation: drift 16s ease-in-out infinite; }
+.animate-drift-slow { animation: drift 24s ease-in-out infinite; }
+
+@keyframes pan {
+  to { background-position: 200% 0; }
+}
+
+@keyframes ping-ring {
+  0% { transform: scale(0.8); opacity: 0.7; }
+  70%, 100% { transform: scale(2.4); opacity: 0; }
+}
+.ping-ring { animation: ping-ring 2.8s ease-out infinite; }
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float { animation: float-y 5s ease-in-out infinite; }
+
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  .fade-in {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
+  html { scroll-behavior: auto; }
+  .fade-in { opacity: 1; transform: none; transition: none; }
+  .animate-drift,
+  .animate-drift-slow,
+  .hairline-glow,
+  .ping-ring,
+  .animate-float { animation: none; }
 }

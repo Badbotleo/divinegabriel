@@ -18,17 +18,16 @@ const footerLinks = [
 export default function Footer({ contact }: { contact: SiteContent["contact"] }) {
   const year = new Date().getFullYear();
   return (
-    <footer className="border-t border-[#222222] bg-ink text-white">
+    <footer className="relative border-t border-edge bg-panel1/60">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px hairline-glow opacity-50" />
       <div className="mx-auto max-w-container px-6 py-16">
         <div className="grid gap-10 md:grid-cols-3">
           <div>
-            <div className="text-lg font-bold text-white">
-              Ugokanu Divine Gabriel
-            </div>
-            <div className="mt-1 text-sm text-white/50">divinegabriel.dev</div>
+            <div className="gradient-text text-lg font-extrabold">Ugokanu Divine Gabriel</div>
+            <div className="mt-1 text-sm text-text-lo">divinegabriel.dev</div>
             <a
               href={`mailto:${contact.email}`}
-              className="mt-3 inline-block text-sm text-white/60 transition-colors hover:text-white"
+              className="mt-3 inline-block text-sm text-text-lo transition-colors hover:text-white"
             >
               {contact.email}
             </a>
@@ -38,19 +37,13 @@ export default function Footer({ contact }: { contact: SiteContent["contact"] })
             <ul className="space-y-2">
               {footerLinks.map((link) => (
                 <li key={link.id}>
-                  <Link
-                    href={`/#${link.id}`}
-                    className="text-sm text-white/70 transition-colors hover:text-white"
-                  >
+                  <Link href={`/#${link.id}`} className="text-sm text-text-lo transition-colors hover:text-white">
                     {link.label}
                   </Link>
                 </li>
               ))}
               <li>
-                <Link
-                  href="/card"
-                  className="text-sm text-white/70 transition-colors hover:text-white"
-                >
+                <Link href="/card" className="text-sm text-text-lo transition-colors hover:text-white">
                   Contact card
                 </Link>
               </li>
@@ -58,16 +51,11 @@ export default function Footer({ contact }: { contact: SiteContent["contact"] })
           </div>
 
           <div className="md:justify-self-end">
-            <div className="text-xs font-semibold uppercase tracking-[0.15em] text-white/40">
-              Ventures
-            </div>
+            <div className="mono-label text-[10px] font-semibold text-text-lo/70">Ventures</div>
             <ul className="mt-3 space-y-2">
               {footerVentures.map((v) => (
                 <li key={v.slug}>
-                  <Link
-                    href={`/ventures/${v.slug}`}
-                    className="text-sm text-white/70 transition-colors hover:text-white"
-                  >
+                  <Link href={`/ventures/${v.slug}`} className="text-sm text-text-lo transition-colors hover:text-white">
                     {v.name}
                   </Link>
                 </li>
@@ -76,7 +64,7 @@ export default function Footer({ contact }: { contact: SiteContent["contact"] })
           </div>
         </div>
 
-        <div className="mt-14 flex flex-wrap items-center justify-between gap-3 border-t border-[#222222] pt-6 text-sm text-white/50">
+        <div className="mt-14 flex flex-wrap items-center justify-between gap-3 border-t border-edge pt-6 text-sm text-text-lo">
           <span>© {year} Ugokanu Divine Gabriel · Abuja, Nigeria 🇳🇬</span>
           <span>Founder · Trader · Builder</span>
         </div>

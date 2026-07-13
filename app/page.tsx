@@ -11,7 +11,6 @@ import Contact from "@/components/sections/Contact";
 import { getContent } from "@/lib/content";
 import { getContactQrDataUrl } from "@/lib/qr";
 
-// Re-fetch dashboard-edited content at most once a minute.
 export const revalidate = 60;
 
 export default async function Home() {
@@ -19,9 +18,9 @@ export default async function Home() {
   const qr = await getContactQrDataUrl();
 
   return (
-    <>
+    <div className="future-root">
       <Navbar />
-      <main>
+      <main className="relative z-10">
         <Hero hero={content.hero} contact={content.contact} />
         <About about={content.about} stats={content.stats} />
         <Ventures ventures={content.ventures} />
@@ -32,6 +31,6 @@ export default async function Home() {
         <Contact contact={content.contact} qr={qr} />
       </main>
       <Footer contact={content.contact} />
-    </>
+    </div>
   );
 }

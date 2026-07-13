@@ -17,6 +17,16 @@ export function accentText(color: AccentColor): string {
   return color === "gold" ? "#0A0A0A" : "#FFFFFF";
 }
 
+// Brightened accents for the dark / futuristic theme (navy is invisible on black)
+export const DARK_ACCENT: Record<AccentColor, string> = {
+  purple: "#8B7BFF",
+  navy: "#5AA9FF",
+  green: "#38E8A0",
+  gold: "#FBCE86",
+  blue: "#5A8CFF",
+  slate: "#9AA6BE",
+};
+
 // ─────────────────────────────────────────────────────────────
 // STATIC venture metadata (not editable from the dashboard):
 // slug, color, logo key, initial, and the gradient used for the

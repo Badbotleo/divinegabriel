@@ -1,12 +1,12 @@
 import FadeIn from "@/components/FadeIn";
 import { XIcon, InstagramIcon } from "@/components/icons";
-import { SiteContent } from "@/lib/data";
+import { SiteContent, DARK_ACCENT } from "@/lib/data";
 
 const pills = [
-  { label: "LinkUpNaija", bg: "#534AB7", text: "#FFFFFF" },
-  { label: "Aerovigil", bg: "#0A1628", text: "#FFFFFF" },
-  { label: "EcoFlux Energy", bg: "#1A7A4A", text: "#FFFFFF" },
-  { label: "BadBot Trading", bg: "#FAC775", text: "#0A0A0A" },
+  { label: "LinkUpNaija", color: DARK_ACCENT.purple },
+  { label: "Aerovigil", color: DARK_ACCENT.navy },
+  { label: "EcoFlux Energy", color: DARK_ACCENT.green },
+  { label: "BadBot Trading", color: DARK_ACCENT.gold },
 ];
 
 export default function Hero({
@@ -19,43 +19,50 @@ export default function Hero({
   return (
     <section
       id="top"
-      className="relative flex min-h-screen items-center overflow-hidden border-b border-line bg-white"
+      className="relative flex min-h-screen items-center overflow-hidden"
     >
-      <div className="dot-grid pointer-events-none absolute inset-0" aria-hidden="true" />
+      {/* Ambient background */}
+      <div className="grid-overlay pointer-events-none absolute inset-0" aria-hidden="true" />
+      <div className="aurora animate-drift left-[8%] top-[6%] h-[26rem] w-[26rem] bg-violet/40" aria-hidden="true" />
+      <div className="aurora animate-drift-slow right-[2%] top-[22%] h-[30rem] w-[30rem] bg-cyan/25" aria-hidden="true" />
+      <div className="aurora animate-drift bottom-[2%] left-[38%] h-[22rem] w-[22rem] bg-violet/25" aria-hidden="true" />
 
-      <div className="relative mx-auto w-full max-w-container px-6 py-28">
+      <div className="relative mx-auto w-full max-w-container px-6 py-32">
         <FadeIn>
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted">
+          <p className="mono-label text-[11px] font-semibold text-cyan">
             {hero.label}
           </p>
         </FadeIn>
 
         <FadeIn delay={80}>
-          <h1 className="mt-6 tracking-tight text-ink">
-            <span className="block text-4xl font-light leading-none sm:text-5xl md:text-7xl lg:text-[80px]">
+          <h1 className="mt-6 tracking-tight">
+            <span className="block text-4xl font-light leading-[1.02] text-white/85 sm:text-5xl md:text-7xl lg:text-[84px]">
               Ugokanu
             </span>
-            <span className="mt-1 block text-4xl font-extrabold leading-none sm:text-5xl md:text-7xl lg:text-[80px]">
+            <span className="gradient-text mt-1 block text-4xl font-extrabold leading-[1.02] sm:text-5xl md:text-7xl lg:text-[84px]">
               Divine Gabriel.
             </span>
           </h1>
         </FadeIn>
 
         <FadeIn delay={160}>
-          <p className="mt-8 max-w-[520px] text-lg leading-relaxed text-muted">
+          <p className="mt-8 max-w-[540px] text-lg leading-relaxed text-text-lo">
             {hero.subheading}
           </p>
         </FadeIn>
 
         <FadeIn delay={220}>
           <div className="mt-8 flex flex-wrap gap-2.5">
-            {pills.map((pill) => (
+            {pills.map((p) => (
               <span
-                key={pill.label}
-                className="rounded-full px-4 py-1.5 text-sm font-medium"
-                style={{ background: pill.bg, color: pill.text }}
+                key={p.label}
+                className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium text-white/90"
               >
-                {pill.label}
+                <span
+                  className="h-2 w-2 rounded-full"
+                  style={{ background: p.color, boxShadow: `0 0 10px ${p.color}` }}
+                />
+                {p.label}
               </span>
             ))}
           </div>
@@ -65,13 +72,13 @@ export default function Hero({
           <div className="mt-10 flex flex-wrap gap-4">
             <a
               href="#ventures"
-              className="rounded-lg bg-ink px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              className="rounded-lg bg-gradient-to-r from-violet to-cyan px-6 py-3 text-sm font-semibold text-void shadow-glow transition-transform hover:-translate-y-0.5"
             >
               See my ventures
             </a>
             <a
               href="#contact"
-              className="rounded-lg border border-ink px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-ink hover:text-white"
+              className="glass rounded-lg px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white/20"
             >
               Get in touch
             </a>
@@ -79,28 +86,32 @@ export default function Hero({
         </FadeIn>
 
         <FadeIn delay={340}>
-          <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6">
-            <p className="text-sm text-muted">
+          <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-edge pt-6">
+            <p className="flex items-center gap-2 text-sm text-text-lo">
+              <span className="relative flex h-2 w-2">
+                <span className="ping-ring absolute inline-flex h-full w-full rounded-full bg-cyan" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan" />
+              </span>
               Currently building in Abuja, Nigeria 🇳🇬
             </p>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               <a
                 href={contact.xUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X (Twitter)"
-                className="text-muted transition-colors hover:text-ink"
+                className="glass flex h-9 w-9 items-center justify-center rounded-lg text-text-lo transition-colors hover:text-white"
               >
-                <XIcon className="h-5 w-5" />
+                <XIcon className="h-4 w-4" />
               </a>
               <a
                 href={contact.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="text-muted transition-colors hover:text-ink"
+                className="glass flex h-9 w-9 items-center justify-center rounded-lg text-text-lo transition-colors hover:text-white"
               >
-                <InstagramIcon className="h-5 w-5" />
+                <InstagramIcon className="h-4 w-4" />
               </a>
             </div>
           </div>
