@@ -8,6 +8,7 @@ const links = [
   { id: "timeline", label: "Timeline" },
   { id: "journal", label: "Journal" },
   { id: "now", label: "Now" },
+  { id: "social", label: "Social" },
   { id: "contact", label: "Contact" },
 ];
 

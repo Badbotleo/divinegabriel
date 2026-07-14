@@ -7,6 +7,7 @@ import Timeline from "@/components/sections/Timeline";
 import Journal from "@/components/sections/Journal";
 import Playlist from "@/components/sections/Playlist";
 import Now from "@/components/sections/Now";
+import Socials from "@/components/sections/Socials";
 import Contact from "@/components/sections/Contact";
 import { getContent } from "@/lib/content";
 import { getContactQrDataUrl } from "@/lib/qr";
@@ -28,6 +29,7 @@ export default async function Home() {
         <Journal journal={content.journal} />
         <Playlist playlist={content.playlist} />
         <Now now={content.now} />
+        <Socials socials={content.socials} />
         <Contact contact={content.contact} qr={qr} />
       </main>
       <Footer contact={content.contact} />

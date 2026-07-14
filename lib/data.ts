@@ -123,6 +123,7 @@ export type SiteContent = {
   journal: Journal;
   playlist: { spotifyUrl: string; appleUrl: string; songs: Song[] };
   now: { note?: string; cards: NowCard[] };
+  socials: SocialLink[];
   contact: {
     email: string;
     x: string;
@@ -130,6 +131,14 @@ export type SiteContent = {
     instagram: string;
     instagramUrl: string;
   };
+};
+
+export type SocialLink = {
+  key: "substack" | "instagram" | "x";
+  label: string;
+  handle: string;
+  blurb: string;
+  url: string;
 };
 
 export const defaultContent: SiteContent = {
@@ -288,7 +297,7 @@ export const defaultContent: SiteContent = {
     },
   ],
   journal: {
-    substackUrl: "",
+    substackUrl: "https://divinegabriel.substack.com",
     posts: [
       {
         slug: "why-i-built-linkupnaija",
@@ -347,12 +356,35 @@ export const defaultContent: SiteContent = {
       },
     ],
   },
+  socials: [
+    {
+      key: "substack",
+      label: "Substack",
+      handle: "@divinegabriel",
+      blurb: "Essays on building, trading and life in Nigeria.",
+      url: "https://divinegabriel.substack.com",
+    },
+    {
+      key: "instagram",
+      label: "Instagram",
+      handle: "@badbot.corp",
+      blurb: "Behind the scenes of the build.",
+      url: "https://instagram.com/badbot.corp",
+    },
+    {
+      key: "x",
+      label: "X",
+      handle: "@Badbotleo",
+      blurb: "Real-time thoughts, markets and updates.",
+      url: "https://x.com/Badbotleo",
+    },
+  ],
   contact: {
     email: "divine@divinegabriel.dev",
-    x: "@Badbotleo001",
-    xUrl: "https://x.com/Badbotleo001",
-    instagram: "@officiallinkupnaija",
-    instagramUrl: "https://instagram.com/officiallinkupnaija",
+    x: "@Badbotleo",
+    xUrl: "https://x.com/Badbotleo",
+    instagram: "@badbot.corp",
+    instagramUrl: "https://instagram.com/badbot.corp",
   },
 };
 

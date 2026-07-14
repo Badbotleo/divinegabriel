@@ -55,7 +55,7 @@ export default function Contact({
     <Section id="contact" panel>
       <FadeIn>
         <SectionHeading
-          kicker="07 — Contact"
+          kicker="08 — Contact"
           title="Get in touch"
           subtitle="Collaborate, invest, or just say hello. Always open."
         />

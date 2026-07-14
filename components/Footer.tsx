@@ -12,6 +12,7 @@ const footerLinks = [
   { id: "ventures", label: "Ventures" },
   { id: "journal", label: "Journal" },
   { id: "now", label: "Now" },
+  { id: "social", label: "Social" },
   { id: "contact", label: "Contact" },
 ];
 
