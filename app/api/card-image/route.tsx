@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { getContent } from "@/lib/content";
 import { getContactQrDataUrl } from "@/lib/qr";
-import { ACCENT, ventureOrder, ventureMeta } from "@/lib/data";
+import { DARK_ACCENT } from "@/lib/data";
 
 export const runtime = "nodejs";
 
@@ -13,19 +13,38 @@ const VIOLET = "#7C6BFF";
 const CYAN = "#38E0FF";
 const GREY = "#8B93AC";
 
-function Dots() {
+const VENTURES = [
+  { name: "LinkUpNaija", color: DARK_ACCENT.purple },
+  { name: "Aerovigil", color: DARK_ACCENT.navy },
+  { name: "EcoFlux Energy", color: DARK_ACCENT.green },
+  { name: "BadBot Trading", color: DARK_ACCENT.gold },
+];
+
+function hexRgba(hex: string, a: number) {
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${a})`;
+}
+
+function VentureChips() {
   return (
-    <div style={{ display: "flex", gap: 10 }}>
-      {ventureOrder.map((slug) => (
+    <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+      {VENTURES.map((v) => (
         <div
-          key={slug}
+          key={v.name}
           style={{
-            width: 14,
-            height: 14,
-            borderRadius: 14,
-            background: ACCENT[ventureMeta[slug].color],
+            display: "flex",
+            alignItems: "center",
+            padding: "8px 18px",
+            borderRadius: 999,
+            fontSize: 22,
+            fontWeight: 600,
+            color: v.color,
+            border: `1px solid ${hexRgba(v.color, 0.45)}`,
+            backgroundColor: hexRgba(v.color, 0.12),
           }}
-        />
+        >
+          {v.name}
+        </div>
       ))}
     </div>
   );
@@ -81,20 +100,12 @@ function Front() {
         <div style={{ fontSize: 22, letterSpacing: 4, color: CYAN, fontWeight: 700 }}>
           FOUNDER · TRADER · BUILDER
         </div>
-        <div style={{ display: "flex", fontSize: 60, marginTop: 12, lineHeight: 1 }}>
+        <div style={{ display: "flex", fontSize: 54, marginTop: 10, lineHeight: 1 }}>
           <span style={{ fontWeight: 300, color: "#FFFFFF" }}>Ugokanu&nbsp;</span>
           <span style={{ fontWeight: 800, color: "#A99BFF" }}>Divine Gabriel</span>
         </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginTop: 22,
-          }}
-        >
-          <span style={{ fontSize: 24, color: GREY }}>Abuja, Nigeria</span>
-          <Dots />
+        <div style={{ display: "flex", marginTop: 22 }}>
+          <VentureChips />
         </div>
       </div>
     </CardShell>

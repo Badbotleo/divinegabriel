@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import PrintButton from "@/components/PrintButton";
 import { VentureMark } from "@/components/logos";
-import { ACCENT, ventureOrder, ventureMeta } from "@/lib/data";
+import { ACCENT, DARK_ACCENT, ventureOrder, ventureMeta } from "@/lib/data";
 import { getContent } from "@/lib/content";
 import { getContactQrDataUrl } from "@/lib/qr";
 
@@ -126,17 +126,23 @@ export default async function CardPage() {
                     Ugokanu{" "}
                     <span className="gradient-text font-extrabold">Divine Gabriel</span>
                   </h1>
-                  <div className="mt-3 flex items-center justify-between">
-                    <span className="text-sm text-text-lo">Abuja, Nigeria 🇳🇬</span>
-                    <span className="flex items-center gap-1.5">
-                      {ventureOrder.map((slug) => (
+                  <div className="mt-2.5 flex flex-wrap gap-1.5">
+                    {ventureOrder.map((slug) => {
+                      const col = DARK_ACCENT[ventureMeta[slug].color];
+                      return (
                         <span
                           key={slug}
-                          className="h-1.5 w-1.5 rounded-full"
-                          style={{ background: ACCENT[ventureMeta[slug].color] }}
-                        />
-                      ))}
-                    </span>
+                          className="rounded-full px-2 py-[3px] text-[10px] font-semibold leading-none"
+                          style={{
+                            color: col,
+                            border: `1px solid ${col}55`,
+                            background: `${col}1A`,
+                          }}
+                        >
+                          {content.ventures[slug].title}
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
               </CardFrame>
