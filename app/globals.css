@@ -132,8 +132,24 @@ body {
 
 /* Business-card print: keep dark background + neon when printing */
 @media print {
+  @page {
+    margin: 0.4in;
+  }
   .card-print {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
+  }
+  /* Center each card on its own printed page */
+  .card-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 9.5in;
+    break-after: page;
+    page-break-after: always;
+  }
+  .card-page:last-child {
+    break-after: auto;
+    page-break-after: auto;
   }
 }

@@ -31,31 +31,28 @@ function Corners() {
   );
 }
 
-// Shared card frame: gradient ring + dark inner + glow/grid/corners
+// Shared card frame: gradient ring + dark inner + print-safe glow (in the
+// clipped background — no blur, so it renders identically on screen & print).
 function CardFrame({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mx-auto w-[min(92vw,480px)] print:w-[3.5in]">
+    <div className="mx-auto w-[min(92vw,480px)] print:w-[3.4in]">
       <div
-        className="card-print aspect-[1.75/1] rounded-[20px] bg-gradient-to-br from-violet/60 via-white/10 to-cyan/50 p-px shadow-[0_0_50px_-8px_rgba(124,107,255,0.4)] print:aspect-auto print:h-[2in] print:shadow-none"
+        className="card-print aspect-[1.75/1] rounded-[20px] p-px shadow-[0_0_50px_-8px_rgba(124,107,255,0.4)] print:aspect-auto print:h-[1.95in] print:shadow-none"
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(124,107,255,0.75), rgba(56,224,255,0.55))",
+        }}
       >
-        <div className="relative h-full overflow-hidden rounded-[19px] bg-panel2">
+        <div
+          className="card-print relative h-full overflow-hidden rounded-[19px]"
+          style={{
+            background:
+              "radial-gradient(130% 95% at 100% 0%, rgba(124,107,255,0.34), transparent 55%), radial-gradient(120% 95% at 0% 105%, rgba(56,224,255,0.22), transparent 52%), #0B0E19",
+          }}
+        >
           <div className="pointer-events-none absolute inset-0 opacity-[0.5]" style={gridBg} />
-          <div
-            className="pointer-events-none absolute -right-16 -top-20 h-52 w-52 rounded-full"
-            style={{
-              background: "radial-gradient(circle, rgba(124,107,255,0.55), transparent 70%)",
-              filter: "blur(18px)",
-            }}
-          />
-          <div
-            className="pointer-events-none absolute -bottom-24 -left-16 h-52 w-52 rounded-full"
-            style={{
-              background: "radial-gradient(circle, rgba(56,224,255,0.35), transparent 70%)",
-              filter: "blur(18px)",
-            }}
-          />
           <Corners />
-          <div className="relative flex h-full flex-col p-6 md:p-7 print:p-6">{children}</div>
+          <div className="relative flex h-full flex-col p-6 md:p-7 print:p-5">{children}</div>
         </div>
       </div>
     </div>
@@ -78,26 +75,41 @@ export default async function CardPage() {
           >
             ← Back
           </Link>
-          <div className="flex gap-3">
+          <div className="flex flex-wrap justify-end gap-2.5">
+            <a
+              href="/api/card-image?side=front"
+              download="divine-card-front.png"
+              className="rounded-lg bg-gradient-to-r from-violet to-cyan px-4 py-2 text-sm font-semibold text-void shadow-[0_0_24px_-4px_rgba(124,107,255,0.7)] transition-transform hover:-translate-y-0.5"
+            >
+              Download front
+            </a>
+            <a
+              href="/api/card-image?side=back"
+              download="divine-card-back.png"
+              className="rounded-lg bg-gradient-to-r from-cyan to-violet px-4 py-2 text-sm font-semibold text-void shadow-[0_0_24px_-4px_rgba(56,224,255,0.6)] transition-transform hover:-translate-y-0.5"
+            >
+              Download back
+            </a>
             <a
               href="/api/vcard"
               className="glass rounded-lg px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-white/25"
             >
               Save contact
             </a>
-            <PrintButton className="rounded-lg bg-gradient-to-r from-violet to-cyan px-4 py-2 text-sm font-semibold text-void shadow-[0_0_24px_-4px_rgba(124,107,255,0.7)] transition-transform hover:-translate-y-0.5">
-              Print / PDF
+            <PrintButton className="glass rounded-lg px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-white/25">
+              Print
             </PrintButton>
           </div>
         </div>
 
         <div className="space-y-8 print:space-y-0">
           {/* ───────── FRONT ───────── */}
-          <div>
+          <div className="card-page">
+            <div>
             <p className="mx-auto mb-3 max-w-[480px] text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-text-lo print:hidden">
               Front
             </p>
-            <div className="print:break-after-page">
+            <div>
               <CardFrame>
                 <div className="flex items-start justify-between">
                   <span className="grid h-12 w-12 place-items-center rounded-xl border border-white/15 bg-white/[0.05]">
@@ -129,10 +141,12 @@ export default async function CardPage() {
                 </div>
               </CardFrame>
             </div>
+            </div>
           </div>
 
           {/* ───────── BACK ───────── */}
-          <div>
+          <div className="card-page">
+            <div>
             <p className="mx-auto mb-3 max-w-[480px] text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-text-lo print:hidden">
               Back
             </p>
@@ -176,12 +190,14 @@ export default async function CardPage() {
                 </span>
               </div>
             </CardFrame>
+            </div>
           </div>
         </div>
 
         <p className="mx-auto mt-8 max-w-[480px] text-center text-xs text-text-lo print:hidden">
-          Tip: “Print / PDF” exports both sides at true business-card size (3.5″ × 2″) —
-          print double-sided, or “Save contact” to download the vCard.
+          Tip: use <span className="font-semibold text-white">Download PNG</span> for a
+          pixel-perfect card to share or print, or “Save contact” for the vCard. When
+          printing, turn off your browser’s “Headers and footers”.
         </p>
       </div>
     </main>
