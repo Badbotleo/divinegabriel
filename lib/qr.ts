@@ -7,9 +7,11 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://divinegabriel.dev"
 /** Build a vCard string from the current (editable) contact details. */
 export function buildVCard(contact: {
   email: string;
+  phoneUrl?: string;
   xUrl: string;
   instagramUrl: string;
 }): string {
+  const tel = (contact.phoneUrl || "").replace(/^tel:/, "");
   return [
     "BEGIN:VCARD",
     "VERSION:3.0",
@@ -18,6 +20,7 @@ export function buildVCard(contact: {
     "TITLE:Founder · Trader · Builder",
     "ORG:LinkUpNaija;Aerovigil;EcoFlux Energy",
     `EMAIL;TYPE=INTERNET:${contact.email}`,
+    ...(tel ? [`TEL;TYPE=CELL:${tel}`] : []),
     `URL:${SITE_URL}`,
     `X-SOCIALPROFILE;TYPE=twitter:${contact.xUrl}`,
     `X-SOCIALPROFILE;TYPE=instagram:${contact.instagramUrl}`,

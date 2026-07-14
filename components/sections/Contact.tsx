@@ -20,6 +20,7 @@ export default function Contact({
 
   const contactCards = [
     { label: "Email", value: contact.email, href: `mailto:${contact.email}` },
+    { label: "Phone", value: contact.phone, href: contact.phoneUrl },
     { label: "X / Twitter", value: contact.x, href: contact.xUrl },
     { label: "Instagram", value: contact.instagram, href: contact.instagramUrl },
   ];
@@ -61,7 +62,7 @@ export default function Contact({
         />
       </FadeIn>
 
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {contactCards.map((card, i) => (
           <FadeIn key={card.label} delay={i * 60}>
             <a

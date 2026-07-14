@@ -126,6 +126,8 @@ export type SiteContent = {
   socials: SocialLink[];
   contact: {
     email: string;
+    phone: string;
+    phoneUrl: string;
     x: string;
     xUrl: string;
     instagram: string;
@@ -381,6 +383,8 @@ export const defaultContent: SiteContent = {
   ],
   contact: {
     email: "divine@divinegabriel.dev",
+    phone: "+234 816 006 5025",
+    phoneUrl: "tel:+2348160065025",
     x: "@Badbotleo",
     xUrl: "https://x.com/Badbotleo",
     instagram: "@badbot.corp",

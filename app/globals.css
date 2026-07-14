@@ -129,3 +129,11 @@ body {
   .ping-ring,
   .animate-float { animation: none; }
 }
+
+/* Business-card print: keep dark background + neon when printing */
+@media print {
+  .card-print {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
