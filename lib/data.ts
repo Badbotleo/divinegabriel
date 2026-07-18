@@ -115,7 +115,7 @@ export type Song = { artist: string; title: string; color: AccentColor };
 export type NowCard = { label: string; body: string };
 
 export type SiteContent = {
-  hero: { label: string; subheading: string };
+  hero: { label: string; pitch: string; subheading: string };
   about: { paragraphs: string[] };
   stats: Stat[];
   ventures: Record<string, VentureContent>;
@@ -146,6 +146,7 @@ export type SocialLink = {
 export const defaultContent: SiteContent = {
   hero: {
     label: "FOUNDER · TRADER · BUILDER · ABUJA, NIGERIA 🇳🇬",
+    pitch: "I build and run companies — and trade the markets.",
     subheading:
       "I build companies in Nigeria — social events, drone security and clean energy — and trade the markets. Find a problem, build the fix, ship it.",
   },

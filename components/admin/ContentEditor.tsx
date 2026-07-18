@@ -127,6 +127,12 @@ export default function ContentEditor({
       {/* Hero */}
       <Card title="Hero">
         <Area
+          label="Pitch (big 'what I do' line under your name)"
+          rows={2}
+          value={content.hero.pitch}
+          onChange={(v) => set((d) => (d.hero.pitch = v))}
+        />
+        <Area
           label="Subheading"
           rows={4}
           value={content.hero.subheading}
