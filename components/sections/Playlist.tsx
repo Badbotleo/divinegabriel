@@ -9,7 +9,7 @@ export default function Playlist({ playlist }: { playlist: SiteContent["playlist
     <Section id="playlist" panel>
       <FadeIn>
         <SectionHeading
-          kicker="05 — Rotation"
+          kicker="05 · Rotation"
           title="What I'm listening to"
           subtitle="Music that plays while I build."
         />

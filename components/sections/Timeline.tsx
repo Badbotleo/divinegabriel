@@ -6,7 +6,7 @@ export default function Timeline({ items }: { items: SiteContent["timeline"] }) 
   return (
     <Section id="timeline" panel>
       <FadeIn>
-        <SectionHeading kicker="03 — Journey" title="The journey" subtitle="How I got here." />
+        <SectionHeading kicker="03 · Journey" title="The journey" subtitle="How I got here." />
       </FadeIn>
 
       <div className="relative">

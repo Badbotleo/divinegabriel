@@ -115,7 +115,7 @@ export type Song = { artist: string; title: string; color: AccentColor };
 export type NowCard = { label: string; body: string };
 
 export type SiteContent = {
-  hero: { label: string; pitch: string; subheading: string };
+  hero: { label: string; subheading: string };
   about: { paragraphs: string[] };
   stats: Stat[];
   ventures: Record<string, VentureContent>;
@@ -146,14 +146,13 @@ export type SocialLink = {
 export const defaultContent: SiteContent = {
   hero: {
     label: "FOUNDER · TRADER · BUILDER · ABUJA, NIGERIA 🇳🇬",
-    pitch: "I build and run companies — and trade the markets.",
     subheading:
-      "I build companies in Nigeria — social events, drone security and clean energy — and trade the markets. Find a problem, build the fix, ship it.",
+      "I build companies in Nigeria. Social events, drone security and clean energy. I also trade the markets. Find a problem, build the fix, ship it.",
   },
   about: {
     paragraphs: [
       "In 2022 I lost my mom. Grief pulled me out of college. Building is how I found my way back.",
-      "I cut my teeth at Vii Media — outreach, websites, ads, SEO, funnels — then co-founded Safe Security Deposit. We paused it. We'll be back.",
+      "I cut my teeth at Vii Media doing outreach, websites, ads, SEO and funnels, then co-founded Safe Security Deposit. We paused it. We'll be back.",
       "Now I run three ventures and trade as BadBot Trading. I don't wait for perfect conditions. I find a problem, build the fix, and ship.",
     ],
   },
@@ -175,7 +174,7 @@ export const defaultContent: SiteContent = {
       description:
         "Nigeria's social events platform. Find real events, meet real people, build genuine connections.",
       longDescription:
-        "LinkUpNaija is where Nigerians find their people in real life. Browse and host events across 20+ categories in all 36 states — book clubs, game nights, picnics, rooftop dinners, fitness meetups and more. An AI concierge helps you discover what's happening near you, Paystack powers ticketing, and a Pro tier unlocks premium hosting tools. Built entirely solo on a modern, scalable stack.",
+        "LinkUpNaija is where Nigerians find their people in real life. Browse and host events across 20+ categories in all 36 states: book clubs, game nights, picnics, rooftop dinners, fitness meetups and more. An AI concierge helps you discover what's happening near you, Paystack powers ticketing, and a Pro tier unlocks premium hosting tools. Built entirely solo on a modern, scalable stack.",
       stats: ["20+ Categories", "All 36 States", "AI-Powered", "₦9,900/mo Pro"],
       pills: ["Next.js", "TypeScript", "Supabase", "Paystack", "Vercel", "Claude AI"],
       link: { label: "Visit linkupnaija.com", href: "https://linkupnaija.com" },
@@ -189,7 +188,7 @@ export const defaultContent: SiteContent = {
       description:
         "Drone security and surveillance for estates, businesses, events and infrastructure across Nigeria.",
       longDescription:
-        "Aerovigil brings eyes to the sky for Nigerian estates, corporate campuses, events and critical infrastructure. Our drones deliver aerial monitoring, perimeter security and real-time surveillance intelligence — spotting threats before they reach the ground. CAC registered and operating out of Abuja, we're building the aerial security layer Nigeria's fastest-growing communities need.",
+        "Aerovigil brings eyes to the sky for Nigerian estates, corporate campuses, events and critical infrastructure. Our drones deliver aerial monitoring, perimeter security and real-time surveillance intelligence that spots threats before they reach the ground. CAC registered and operating out of Abuja, we're building the aerial security layer Nigeria's fastest-growing communities need.",
       stats: ["Estates", "Corporate", "Events", "Infrastructure"],
       pills: [
         "Aerial Security",
@@ -209,7 +208,7 @@ export const defaultContent: SiteContent = {
       description:
         "Clean solar power for homes, communities and businesses across Nigeria.",
       longDescription:
-        "EcoFlux Energy exists to end the darkness. We design and install solar power systems for homes, rural communities and commercial buildings — turning Nigeria's biggest constraint, unreliable power, into an opportunity. From single-home setups to community electrification, we're building toward a future where clean, affordable, reliable energy is the default, not the luxury.",
+        "EcoFlux Energy exists to end the darkness. We design and install solar power systems for homes, rural communities and commercial buildings, turning Nigeria's biggest constraint, unreliable power, into an opportunity. From single-home setups to community electrification, we're building toward a future where clean, affordable, reliable energy is the default, not the luxury.",
       stats: ["Residential", "Rural Communities", "Commercial"],
       pills: [
         "Solar Installation",
@@ -218,7 +217,7 @@ export const defaultContent: SiteContent = {
         "Commercial Systems",
       ],
       statusNote: "Early stage · Abuja, Nigeria",
-      comingSoon: "ecofluxenergy.com — coming soon",
+      comingSoon: "ecofluxenergy.com (coming soon)",
     },
     badbot: {
       status: "ACTIVE",
@@ -229,10 +228,10 @@ export const defaultContent: SiteContent = {
       description:
         "A proprietary trading system I built and run. Fibonacci, DXY correlation, discipline. No external capital.",
       longDescription:
-        "BadBot Trading is my proprietary system, built from scratch and operated independently. It runs top-down Fibonacci analysis with DXY correlation across XAUUSD, GBPUSD and USTECH100 — every setup documented, every rule tested. No external capital, no noise: just discipline, risk management and systematic execution.",
+        "BadBot Trading is my proprietary system, built from scratch and operated independently. It runs top-down Fibonacci analysis with DXY correlation across XAUUSD, GBPUSD and USTECH100, with every setup documented and every rule tested. No external capital, no noise. Just discipline, risk management and systematic execution.",
       stats: ["XAUUSD", "GBPUSD", "USTECH100"],
       pills: ["Fibonacci Analysis", "DXY Correlation", "Price Action", "Risk Management"],
-      privateNote: "Private — no external link",
+      privateNote: "Private, no external link",
     },
   },
   timeline: [
@@ -240,7 +239,7 @@ export const defaultContent: SiteContent = {
       year: "2022",
       title: "A hard reset",
       description:
-        "Lost my mom. Dropped out of college. Rock bottom — and the beginning of everything.",
+        "Lost my mom. Dropped out of college. Rock bottom, and the beginning of everything.",
       color: "slate",
     },
     {

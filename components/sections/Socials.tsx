@@ -30,9 +30,9 @@ export default function Socials({ socials }: { socials: SiteContent["socials"] }
     <Section id="social">
       <FadeIn>
         <SectionHeading
-          kicker="07 — Social"
+          kicker="07 · Social"
           title="Find me online"
-          subtitle="Follow the journey — writing, markets and behind the scenes of the build."
+          subtitle="Follow the journey. Writing, markets and behind the scenes of the build."
         />
       </FadeIn>
 

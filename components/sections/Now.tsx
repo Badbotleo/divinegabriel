@@ -7,7 +7,7 @@ export default function Now({ now }: { now: SiteContent["now"] }) {
     <Section id="now">
       <FadeIn>
         <SectionHeading
-          kicker="06 — Now"
+          kicker="06 · Now"
           title="Now"
           subtitle="What I am focused on · Updated July 2026"
         />

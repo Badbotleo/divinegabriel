@@ -109,7 +109,7 @@ export default function Ventures({
     <Section id="ventures">
       <FadeIn>
         <SectionHeading
-          kicker="02 — Ventures"
+          kicker="02 · Ventures"
           title="Companies I build & operate"
           subtitle="Four ventures, one operator. Each one solves a real problem I saw in Nigeria."
         />

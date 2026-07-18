@@ -45,14 +45,8 @@ export default function Hero({
           </h1>
         </FadeIn>
 
-        <FadeIn delay={140}>
-          <p className="mt-6 max-w-[600px] text-2xl font-bold leading-snug text-white md:text-[28px]">
-            {hero.pitch}
-          </p>
-        </FadeIn>
-
-        <FadeIn delay={200}>
-          <p className="mt-4 max-w-[540px] text-lg leading-relaxed text-text-lo">
+        <FadeIn delay={160}>
+          <p className="mt-8 max-w-[540px] text-lg leading-relaxed text-text-lo">
             {hero.subheading}
           </p>
         </FadeIn>

@@ -14,7 +14,7 @@ export default function About({
       <div className="grid gap-12 md:grid-cols-5 md:gap-16">
         <div className="md:col-span-3">
           <FadeIn>
-            <SectionHeading kicker="01 — About" title="About me" />
+            <SectionHeading kicker="01 · About" title="About me" />
           </FadeIn>
           <div className="space-y-6 text-lg leading-relaxed text-text-lo">
             {about.paragraphs.map((p, i) => (

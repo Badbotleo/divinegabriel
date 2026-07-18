@@ -13,7 +13,7 @@ export default function Journal({ journal }: { journal: SiteContent["journal"] }
       <div className="flex flex-wrap items-end justify-between gap-4">
         <FadeIn>
           <SectionHeading
-            kicker="04 — Journal"
+            kicker="04 · Journal"
             title="Journal"
             subtitle="Thoughts on building, trading and life in Nigeria."
           />
